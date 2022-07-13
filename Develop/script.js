@@ -4,7 +4,12 @@ $("#currentDay").text(timeNow);
 
 //code that will cause past timeblocks to gray out
 var timePass = function () {
-    // var timeBlock =
+    var timeBlock = $(".hour")
+    .text()
+    .trim()
+    .replace('AM', '')
+    .replace('PM', '');
+    console.log(timeBlock);
     var currentHour = moment().hours();
     
   //  if 
