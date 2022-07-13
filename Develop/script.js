@@ -4,18 +4,14 @@ $("#currentDay").text(timeNow);
 
 //code that will cause past timeblocks to gray out
 var timePass = function () {
-    var time = $(".hour")
-    .text()
-    .trim()
-    console.log(time);
+    // var timeBlock =
+    var currentHour = moment().hours();
     
-    if (moment().isAfter(time)) {
+  //  if 
         
-        $(".hour").addClass("past");
-    } 
     
-
-}
+} 
+    
 timePass();
 
 //present timeblock is red
