@@ -4,18 +4,40 @@ $("#currentDay").text(timeNow);
 
 //code that will cause past timeblocks to gray out
 var timePass = function () {
-    var timeBlock = $(".hour")
-    .text()
-    .trim()
-    .replace('AM', '')
-    .replace('PM', '');
-    console.log(timeBlock);
     var currentHour = moment().hours();
+    console.log(currentHour);
+
+   // var eachBlock = $(".hour").each(function() {
+   // var timeBlock = $(this)
+   // .text()
+   // .trim()
+   // .replace('AM', '')
+  //  .replace('PM', '')
+   // });
+
+   var blockHour = $(".hour")
+   for (var i = 0; i<blockHour.length; i++) {
+    blockHour[i] = parseInt(blockHour[i].textContent)
+
     
-  //  if 
+
+    //console.log(blockHour[i]);
+
+    if (blockHour[i] < currentHour) {
+    $(".textarea").addClass("past");
+   }
+    
+   }
+
+   
+    
+
+    
+  //  if (currentHour > timeBlock) {
+
+  }
         
     
-} 
     
 timePass();
 
