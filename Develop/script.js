@@ -18,28 +18,23 @@ var timePass = function () {
    var blockHour = $(".hour")
    for (var i = 0; i<blockHour.length; i++) {
     blockHour[i] = parseInt(blockHour[i].textContent)
-
+    var timeBlock = moment(blockHour[i], "HH").format("LTS")
     
 
-    //console.log(blockHour[i]);
+    console.log(blockHour[i]);
+    console.log(timeBlock);
 
-    if (blockHour[i] < currentHour) {
+    if (moment().isAfter(blockHour[i])) {
     $(".textarea").addClass("past");
    }
     
    }
 
-   
-    
 
-    
-  //  if (currentHour > timeBlock) {
 
-  }
-        
-    
-    
+  } 
 timePass();
+
 
 //present timeblock is red
 
