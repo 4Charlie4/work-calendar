@@ -1,46 +1,44 @@
+var blockHour = $(".hour")
+var currentHour = moment().hours();
+var userInputEl = $("#taskDesc");
+var saveBtn = $(".saveBtn");
+var timeContEl = $(".container");
+
 //current time and day 
 const timeNow = moment().format("dddd, MMMM Do, h:mm");
 $("#currentDay").text(timeNow);
 
 //code that will cause past timeblocks to gray out
 var timePass = function () {
-    var currentHour = moment().hours();
+
     console.log(currentHour);
-
-   // var eachBlock = $(".hour").each(function() {
-   // var timeBlock = $(this)
-   // .text()
-   // .trim()
-   // .replace('AM', '')
-  //  .replace('PM', '')
-   // });
-
-   var blockHour = $(".hour")
+    //loops over each time block
    for (var i = 0; i<blockHour.length; i++) {
-    //finally got it to look at ID
+
+    //grabbing id of each time block
     blockHour[i] = parseInt(blockHour[i].id)
     
-    
-
     console.log(blockHour[i]);
     
-
     if (currentHour > blockHour[i]) {
-    $(".description").addClass("past");
-   } 
 
-   }
-    
+    $(".row").addClass("past");
+}
    }
 
+}
 
-
-  
 timePass();
 
-var saveContent = function (){
-    $('')
-}
+var saveInput = function() {
+    localStorage.setItem("Task",JSON.stringify(userInputEl.value));
+};
+
+saveBtn.addEventListener("click", function(e) {
+    console.log(e.target);
+    console.log("Saved");
+    saveInput();
+});
 
 
 //present timeblock is red
