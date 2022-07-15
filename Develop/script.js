@@ -36,7 +36,7 @@ var loadTask = function() {
         var value = localStorage.getItem(key);
 
        if (!value) {
-        value = 0;
+        value = "";
         break;
 
        } else {
@@ -46,7 +46,7 @@ var loadTask = function() {
 
        }
 
-       console.log(`${key} : ${value}` );  
+       //console.log(`${key} : ${value}` );  
        console.log(textBlock.value); 
 
     }
