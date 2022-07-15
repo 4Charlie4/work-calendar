@@ -34,6 +34,8 @@ var loadTask = function() {
         for (var i=0; i < localStorage.length; i++){
         var key = localStorage.key(i);
         var value = localStorage.getItem(key);
+        var keyEl = $(`#${key}`);
+         
 
        if (!value) {
         value = "";
@@ -41,13 +43,13 @@ var loadTask = function() {
 
        } else {
         
-
-        textBlock.value = value;
+        keyEl.val(value);
+       
 
        }
 
        //console.log(`${key} : ${value}` );  
-       console.log(textBlock.value); 
+       console.log(keyEl); 
 
     }
   };
