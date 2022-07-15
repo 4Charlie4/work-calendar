@@ -2,7 +2,8 @@ var blockHour = $(".hour")
 var currentHour = moment().hours();
 var userInputEl = $("#taskDesc");
 var saveBtn = $(".saveBtn");
-var timeContEl = $(".container");
+//console.log(saveBtn);
+var textBlock = $(".description");
 
 //current time and day 
 const timeNow = moment().format("dddd, MMMM Do, h:mm");
@@ -11,41 +12,56 @@ $("#currentDay").text(timeNow);
 //code that will cause past timeblocks to gray out
 var timePass = function () {
 
-    console.log(currentHour);
+    console.log(currentHour, blockHour);
     //loops over each time block
-   for (var i = 0; i<blockHour.length; i++) {
-
-    //grabbing id of each time block
-    blockHour[i] = parseInt(blockHour[i].id)
+   for (var i = 9; i<=17; i++) {
     
-    console.log(blockHour[i]);
-    
-    if (currentHour > blockHour[i]) {
-
-    $(".row").addClass("past");
+    if (currentHour > i)  $(`#taskDesc-${i}`).addClass("past");
+    //present timeblock is red
+    if (currentHour === i)  $(`#taskDesc-${i}`).addClass("present");
+    //future timeblocks are green
+    if (currentHour < i)  $(`#taskDesc-${i}`).addClass("future");
+  }
 }
-   }
-
-}
-
 timePass();
 
-var saveInput = function() {
-    localStorage.setItem("Task",JSON.stringify(userInputEl.value));
-};
 
-saveBtn.addEventListener("click", function(e) {
+
+ 
+
+var loadTask = function() {
+    
+        for (var i=0; i < localStorage.length; i++){
+        var key = localStorage.key(i);
+        var value = localStorage.getItem(key);
+
+       if (!value) {
+        value = 0;
+        break;
+
+       } else {
+        
+
+        textBlock.value = value;
+
+       }
+
+       console.log(`${key} : ${value}` );  
+       console.log(textBlock.value); 
+
+    }
+  };
+
+ loadTask();
+ 
+ // save input information into localstorage upon button click
+saveBtn.click(function(e) {
+    // uservalueEl targets the value within textarea
+    var userValueEl = e.target.parentElement.childNodes[3].value
+    //valueId targets the id of the text area
+    var valueIdEl = e.target.parentElement.childNodes[3].id
+    //saves content within text area
     console.log(e.target);
-    console.log("Saved");
-    saveInput();
-});
-
-
-//present timeblock is red
-
-//future timeblocks are green
-
-// save input information into localstorage upon button click
-
-
-
+    localStorage.setItem(valueIdEl, userValueEl);
+  
+}); 
